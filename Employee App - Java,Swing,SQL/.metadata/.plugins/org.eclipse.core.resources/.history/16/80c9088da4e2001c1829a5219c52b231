@@ -1,0 +1,92 @@
+package Employee;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.awt.Color;
+
+public class Tabel {
+
+	private JFrame frmAfisareAngajati;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tabel window = new Tabel();
+					window.frmAfisareAngajati.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Tabel() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmAfisareAngajati = new JFrame();
+		frmAfisareAngajati.getContentPane().setBackground(Color.GRAY);
+		frmAfisareAngajati.getContentPane().addContainerListener(new ContainerAdapter() {
+			@Override
+			public void componentAdded(ContainerEvent e) {
+				try {
+					showDbEmployees();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+				private void showDbEmployees() throws ClassNotFoundException, SQLException {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemployee", "root", "root");
+					Statement stmt = con.createStatement();
+					ResultSet rs = stmt.executeQuery("SELECT * FROM dbemployee.employee;");
+					
+					while(rs.next()) {
+						System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " 
+								+ rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5) + " " 
+								+ rs.getString(6) + " " + rs.getString(7) );
+					}
+					
+					con.close();
+			
+		
+		frmAfisareAngajati.setTitle("Afisare Angajati");
+		frmAfisareAngajati.setBounds(100, 100, 450, 300);
+		frmAfisareAngajati.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAfisareAngajati.getContentPane().setLayout(null);
+			
+		
+		table = new JTable();
+		table.setBounds(0, 244, 434, -243);
+		frmAfisareAngajati.getContentPane().add(table);
+				}
+		});
+	}
+}
+
+

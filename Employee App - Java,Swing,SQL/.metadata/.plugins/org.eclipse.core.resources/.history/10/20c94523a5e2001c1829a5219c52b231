@@ -1,0 +1,120 @@
+package Employee;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.awt.Color;
+
+public class Tabel {
+
+	private JFrame frmAfisareAngajati;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tabel window = new Tabel();
+					window.frmAfisareAngajati.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Tabel() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmAfisareAngajati = new JFrame();
+		frmAfisareAngajati.getContentPane().setBackground(Color.GRAY);
+		frmAfisareAngajati.getContentPane().addContainerListener(new ContainerAdapter() {
+			@Override
+			public void componentAdded(ContainerEvent e) {
+				try {
+					showDbEmployees();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+				private void showDbEmployees() throws ClassNotFoundException, SQLException {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemployee", "root", "root");
+					Statement stmt = con.createStatement();
+					ResultSet rs = stmt.executeQuery("SELECT * FROM dbemployee.employee;");
+					
+					 String columns[] = { "ID", "Name", "Age" };
+				     String data[][] = new String[10][10];
+				    
+				      int i = 0;
+				      while (rs.next()) {
+				        int id = rs.getInt("ID");
+				        String nom = rs.getString("name");
+				        String sur = rs.getString("surname");
+				        data[i][0] = id + "";
+				        data[i][1] = nom;
+				        data[i][2] = sur;
+				        i++;
+				      }
+				    
+				      DefaultTableModel model = new DefaultTableModel(data, columns);
+				      JTable table = new JTable(model);
+				      table.setShowGrid(true);
+				      table.setShowVerticalLines(true);
+				      JScrollPane pane = new JScrollPane(table);
+				      JFrame f = new JFrame("Populate JTable from Database");
+				      JPanel panel = new JPanel();
+				      panel.add(pane);
+				      f.add(panel);
+				      f.setSize(500, 250);
+				      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				      f.setVisible(true);
+				    
+				    ;} 
+				    
+				  }
+				
+			
+		
+		frmAfisareAngajati.setTitle("Afisare Angajati");
+		frmAfisareAngajati.setBounds(100, 100, 450, 300);
+		frmAfisareAngajati.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAfisareAngajati.getContentPane().setLayout(null);
+			
+		
+		table = new JTable();
+		table.setBounds(0, 244, 434, -243);
+		frmAfisareAngajati.getContentPane().add(table);
+				
+	};
+	
+}
+
+
