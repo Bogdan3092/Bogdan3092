@@ -1,0 +1,16 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TestFacebook {
+
+	public static void main(String[] args) {
+		System.getProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://facebook.com"); 
+		driver.findElement(By.className("fbIndex UIPage_LoggedOut hasBanner _-kb _605a b_c3pyn-ahh chrome webkit win x1 Locale_en_US cores-gte4 _19_u hasCookieBanner hasAXNavMenubar")).click();
+		driver.findElement(By.id("email")).sendKeys("dj_bobo_07@yahoo.com");
+	}
+
+}

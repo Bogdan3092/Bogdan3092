@@ -1,0 +1,23 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TestFacebook {
+
+	public static void main(String[] args) {
+		System.getProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://facebook.com"); 
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,350)", "");
+		
+		driver.findElement(By.xpath("//*[@id=\"facebook\"]/body")).click();
+
+
+		driver.findElement(By.id("email")).sendKeys("dj_bobo_07@yahoo.com");
+	}
+
+}
