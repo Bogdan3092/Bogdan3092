@@ -1,0 +1,98 @@
+package Pharmacy;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+
+public class LoginApp {
+
+	private JFrame frame;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginApp window = new LoginApp();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public LoginApp() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		JFrame = new JFrame();
+		frame.setBounds(100, 100, 245, 166);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("User");
+		lblNewLabel.setBounds(10, 23, 46, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Password");
+		lblNewLabel_1.setBounds(10, 48, 46, 14);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JPasswordField = new JPasswordField();
+		passwordField.setBounds(90, 20, 115, 20);
+		frame.getContentPane().add(passwordField);
+		
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(90, 45, 115, 20);
+		frame.getContentPane().add(passwordField_1);
+		
+		JButton btnNewButton = new JButton("Login");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String user = passwordField.getText();
+				String password = passwordField_1.getText();
+			}
+		});
+		btnNewButton.setBounds(61, 76, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+	}
+
+
+private static void LoginDB(String user, String pass) throws ClassNotFoundException, SQLException {
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemployee", "root", "root");
+	Statement stmt = con.createStatement();
+	ResultSet rs = stmt.executeQuery("SELECT * FROM dbemployee.employee;");
+	
+	while(rs.next()) {
+		String userFromDB = rs.getString("user");
+		String passFromDB = rs.getString("password");
+		if (user.equalsIgnoreCase(userFromDB)) && pass.equals(passFromDB) {
+			System.out.println("Login OK");
+		}		
+	}
+	con.close();
+}
+}
+	

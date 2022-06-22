@@ -1,0 +1,77 @@
+package Pharmacy;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import java.awt.SystemColor;
+
+public class PharmaApp {
+
+	private JFrame frmPharmaApp;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PharmaApp window = new PharmaApp();
+					window.frmPharmaApp.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PharmaApp() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmPharmaApp = new JFrame();
+		frmPharmaApp.getContentPane().setBackground(SystemColor.activeCaption);
+		frmPharmaApp.setTitle("Pharma App");
+		frmPharmaApp.setBounds(100, 100, 450, 300);
+		frmPharmaApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPharmaApp.getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Afisare tot Stocul");
+		btnNewButton.setBounds(260, 200, 115, 23);
+		frmPharmaApp.getContentPane().add(btnNewButton);
+		
+		JButton btnCautareStoc = new JButton("Cautare in Stoc");
+		btnCautareStoc.setBounds(260, 145, 115, 23);
+		frmPharmaApp.getContentPane().add(btnCautareStoc);
+		
+		JButton btnInserareStoc = new JButton("Inserare in Stoc");
+		btnInserareStoc.setBounds(260, 38, 115, 23);
+		frmPharmaApp.getContentPane().add(btnInserareStoc);
+		
+		JButton btnStergereStocStoc = new JButton("Stergere din Stoc");
+		btnStergereStocStoc.setBounds(260, 87, 115, 23);
+		frmPharmaApp.getContentPane().add(btnStergereStocStoc);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(33, 38, 201, 20);
+		frmPharmaApp.getContentPane().add(textPane);
+		
+		JTextPane textPane_1 = new JTextPane();
+		textPane_1.setBounds(33, 90, 201, 20);
+		frmPharmaApp.getContentPane().add(textPane_1);
+		
+		JTextPane textPane_2 = new JTextPane();
+		textPane_2.setBounds(33, 148, 201, 20);
+		frmPharmaApp.getContentPane().add(textPane_2);
+	}
+
+}

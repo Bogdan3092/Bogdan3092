@@ -1,0 +1,54 @@
+package Pharmacy;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+
+public class PharmaApp {
+
+	private JFrame frmPharmaApp;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PharmaApp window = new PharmaApp();
+					window.frmPharmaApp.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PharmaApp() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmPharmaApp = new JFrame();
+		frmPharmaApp.setTitle("Pharma App");
+		frmPharmaApp.setBounds(100, 100, 450, 300);
+		frmPharmaApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPharmaApp.getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Afisare Stoc");
+		btnNewButton.setBounds(309, 227, 115, 23);
+		frmPharmaApp.getContentPane().add(btnNewButton);
+		
+		JButton btnCautareStoc = new JButton("Cautare Stoc");
+		btnCautareStoc.setBounds(167, 227, 115, 23);
+		frmPharmaApp.getContentPane().add(btnCautareStoc);
+	}
+
+}
