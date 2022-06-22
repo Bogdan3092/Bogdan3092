@@ -1,0 +1,14 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+		
+		System.getProperty("webdriver.chrome.driver", "C:\\Curs Selenium\\ChromeWebdriver\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://google.com");
+	}
+
+}

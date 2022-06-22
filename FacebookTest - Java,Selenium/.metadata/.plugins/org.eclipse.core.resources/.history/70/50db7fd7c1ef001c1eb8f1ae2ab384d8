@@ -1,0 +1,22 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+		
+		System.getProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://google.com");
+		System.out.println(driver.getTitle());
+		try {
+			driver.wait(60);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.close();
+	}
+
+}

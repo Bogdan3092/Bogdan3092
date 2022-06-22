@@ -1,0 +1,16 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TestFacebook {
+
+	public static void main(String[] args) {
+		System.getProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://facebook.com"); 
+	
+		driver.findElement(By.id("email"));
+	}
+
+}
