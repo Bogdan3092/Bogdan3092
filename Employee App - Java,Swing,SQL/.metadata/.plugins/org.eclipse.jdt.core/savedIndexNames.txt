@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\Curs Java\Tema 8\.metadata\.plugins\org.eclipse.jdt.core
-521059614.index
-1865797976.index
-1288917526.index
