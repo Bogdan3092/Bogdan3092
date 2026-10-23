@@ -1,0 +1,14 @@
+{
+  "name": "ai-orchestrator",
+  "version": "1.0.0",
+  "description": "Orchestrator web: mai multe modele AI gratuite (OpenRouter) colaborează — răspuns, verificare, sinteză.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
